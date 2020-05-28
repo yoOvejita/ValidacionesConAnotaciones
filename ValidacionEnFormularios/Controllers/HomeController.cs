@@ -34,6 +34,10 @@ namespace ValidacionEnFormularios.Controllers
         [HttpPost]
         public ActionResult EjemploValidacion(Cuenta cuenta)
         {
+            if (cuenta.NombreUsuario != null && cuenta.NombreUsuario.Equals("admin")) {
+                ModelState.AddModelError("NombreUsuario", "No puedes ponerte admin!!");
+                
+            }
             if (ModelState.IsValid) {
                 ViewBag.cuenta = cuenta;
                 return View("Success");
